@@ -48,8 +48,8 @@ const AccountDetail = ({
   const [delOpen, setDelOpen] = useState(false);
   const diffColor = diffAsset(+data?.assets, +data?.payments);
 
-  const created_at = useFormatLocaleDate(data.created_at);
-  const updated_at = useFormatLocaleDate(data.updated_at);
+  const created_at = useFormatLocaleDate(data?.created_at);
+  const updated_at = useFormatLocaleDate(data?.updated_at);
 
   const diffIcon = () => {
     if (diffColor === 'plus')
