@@ -1,12 +1,11 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
 
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 import AccountIndex from 'components/layout/Admin/Accounts';
 import AxiosRequest from 'core/services';
-import { getToken } from 'next-auth/jwt';
 
 const AccountsPage = () => {
   return <AccountIndex />;
@@ -14,15 +13,6 @@ const AccountsPage = () => {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const queryClient = new QueryClient();
-  const session = await getSession(context);
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
   const token = await getToken(context);
   if (token) {
     const { broker = '', active = '', status = '', q = '', ...pages } = context.query;

@@ -2,7 +2,6 @@ import { GetServerSideProps } from 'next';
 
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { getToken } from 'next-auth/jwt';
-import { getSession } from 'next-auth/react';
 
 import AccountDetailIndex from 'components/layout/Admin/Accounts/Detail';
 import AxiosRequest from 'core/services';
@@ -17,15 +16,6 @@ const AccountDetail = () => {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const queryClient = new QueryClient();
-  const session = await getSession(context);
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
 
   const token = await getToken(context);
   if (token) {
@@ -40,6 +30,13 @@ export const getServerSideProps: GetServerSideProps = async context => {
       const mergeData = { ...data, user_name: userData.name };
       return mergeData;
     });
+  } else {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
   }
 
   return { props: { dehydratedState: dehydrate(queryClient) } };
