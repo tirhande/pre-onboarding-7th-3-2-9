@@ -5,6 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import { ACCOUNT_STATUS, BROKERS } from 'utils/DataEnum';
 import { convertAccountNumber } from 'utils/DataFormatter';
 import { convertCurrency, diffAsset } from 'utils/CurrencyFormatter';
+import { useFormatLocaleDate } from 'core/services/hooks/useFormattedDate';
 
 const StyledTableRow = styled(TableRow)(() => ({
   cursor: 'pointer',
@@ -13,6 +14,9 @@ const StyledTableRow = styled(TableRow)(() => ({
 const RowItem = ({ data, onRowClick, onNameClick }) => {
   const diffColor = diffAsset(data.assets, data.payments);
   const number = convertAccountNumber(data.broker_id, data.number);
+
+  const date = useFormatLocaleDate(data.created_at);
+
   return (
     <>
       <StyledTableRow hover onClick={onRowClick} data-account-id={data.id}>
@@ -43,7 +47,7 @@ const RowItem = ({ data, onRowClick, onNameClick }) => {
           <span>{JSON.parse(data.is_active) ? '활성' : '비활성'}</span>
         </TableCell>
         <TableCell>
-          <span>{new Date(data.created_at).toLocaleString()}</span>
+          <span>{date}</span>
         </TableCell>
       </StyledTableRow>
     </>

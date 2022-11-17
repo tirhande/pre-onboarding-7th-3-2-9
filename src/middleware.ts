@@ -11,9 +11,7 @@ export async function middleware(req: NextRequest) {
         Authorization: `Bearer ${token?.accessToken}`,
       },
     });
-    console.log('data???');
   } catch (e) {
-    console.log(e, 'err???');
     NextResponse.redirect(new URL('/', req.url));
   }
 

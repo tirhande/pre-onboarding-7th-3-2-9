@@ -9,6 +9,7 @@ import { IAccountData } from 'core/services/types';
 import AccountDetail from './AccountDetail';
 import useAccountQuery from 'core/services/hooks/useAccountQuery';
 import { useMutateAccount } from 'core/services/hooks/useMutateAccount';
+import { useFormattedNowDate } from 'core/services/hooks/useFormattedDate';
 
 const AccountDetailIndex = () => {
   const router = useRouter();
@@ -52,8 +53,8 @@ const AccountDetailIndex = () => {
     },
   });
 
+  const newDate = useFormattedNowDate();
   const onEditAccount = (values: { name: string; is_active: boolean }) => {
-    const newDate = new Date().toISOString();
     editMutate.mutate({ ...values, updated_at: newDate });
   };
 

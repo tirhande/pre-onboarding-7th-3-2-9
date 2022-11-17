@@ -17,6 +17,7 @@ import AxiosRequest from 'core/services';
 import { IMutateData, IUserData } from 'core/services/types';
 import { getAccountNumber } from 'utils/GenerateData';
 import { useMutateAccount } from 'core/services/hooks/useMutateAccount';
+import { useFormattedNowDate } from 'core/services/hooks/useFormattedDate';
 
 const CreateAccount = ({ dialogClose }: { dialogClose: () => void }) => {
   const { data: session } = useSession();
@@ -52,9 +53,8 @@ const CreateAccount = ({ dialogClose }: { dialogClose: () => void }) => {
       enabled: !!session?.accessToken,
     }
   );
-
+  const newDate = useFormattedNowDate();
   const onCreateSubmit = (values: IMutateData) => {
-    const newDate = new Date().toISOString();
     const data = {
       ...values,
       uuid: crypto.randomUUID(),

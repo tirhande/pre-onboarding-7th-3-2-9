@@ -20,6 +20,7 @@ import { convertCurrency, diffAsset } from 'utils/CurrencyFormatter';
 import { IAccountData } from 'core/services/types';
 import ConfirmDialog from 'components/blocks/ConfirmDialog';
 import { useRouter } from 'next/router';
+import { useFormatLocaleDate } from 'core/services/hooks/useFormattedDate';
 
 interface IAccountDetail {
   data: IAccountData;
@@ -46,6 +47,10 @@ const AccountDetail = ({
   const router = useRouter();
   const [delOpen, setDelOpen] = useState(false);
   const diffColor = diffAsset(+data?.assets, +data?.payments);
+  const created_at = useFormatLocaleDate(data.created_at);
+  const updated_at = useFormatLocaleDate(data.updated_at);
+  console.log(data.updated_at);
+  console.log(updated_at);
 
   const diffIcon = () => {
     if (diffColor === 'plus')
@@ -167,12 +172,12 @@ const AccountDetail = ({
             <Divider variant="middle" />
             <Typography variant="h6" component="div">
               계좌개설일
-              <Typography variant="body1">{new Date(data.created_at).toLocaleString()}</Typography>
+              <Typography variant="body1">{created_at}</Typography>
             </Typography>
             <Divider variant="middle" />
             <Typography variant="h6" component="div">
               계좌수정일
-              <Typography variant="body1">{new Date(data.updated_at).toLocaleString()}</Typography>
+              <Typography variant="body1">{updated_at}</Typography>
             </Typography>
           </CardContent>
           <CardActions>

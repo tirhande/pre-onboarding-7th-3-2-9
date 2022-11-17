@@ -6,7 +6,7 @@ import { Session } from 'next-auth';
 import { getSession, SessionProvider } from 'next-auth/react';
 
 import { DehydratedState, Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RecoilRoot } from 'recoil';
 import { Toaster } from 'react-hot-toast';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -58,7 +58,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
                 {getLayout(<Component {...pageProps} />)}
               </ThemeProvider>
             </RecoilRoot>
-            <ReactQueryDevtools />
+            {/* <ReactQueryDevtools /> */}
           </Hydrate>
         </QueryClientProvider>
       </SessionProvider>
