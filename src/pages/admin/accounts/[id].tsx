@@ -18,8 +18,7 @@ const AccountDetail = () => {
 export const getServerSideProps: GetServerSideProps = async context => {
   const queryClient = new QueryClient();
   const session = await getSession(context);
-  const expires = new Date(session.expires);
-  if (new Date() > expires) {
+  if (!session) {
     return {
       redirect: {
         destination: '/',

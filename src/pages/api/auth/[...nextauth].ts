@@ -41,7 +41,6 @@ export default NextAuth({
     },
     session: ({ session, token }) => {
       session.accessToken = token.accessToken;
-      session.expires = new Date(parseInt(String(token.exp).padEnd(13, '0'))).toISOString();
       session.user = token.user;
       return session;
     },
