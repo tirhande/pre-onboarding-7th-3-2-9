@@ -8,25 +8,31 @@ import { useState, useEffect } from 'react';
 // https://github.com/vercel/next.js/discussions/39425
 // https://velog.io/@real-bird/Next.js-SSR-Error-React18-error-423-418-425
 
-export const useFormattedDate = (date: string | number) => {
-  const [formattedDate, setFormattedDate] = useState<string>(null);
-
-  useEffect(() => setFormattedDate(new Date(date).toISOString()), []);
-
+export const useFormattedDate = (date: string) => {
+  const [formattedDate, setFormattedDate] = useState<string>(date);
+  useEffect(() => {
+    if (date) {
+      setFormattedDate(new Date(date).toISOString());
+    }
+  }, [date]);
   return formattedDate;
 };
 
 export const useFormattedNowDate = () => {
   const [formattedDate, setFormattedDate] = useState<string>(null);
-
-  useEffect(() => setFormattedDate(new Date().toISOString()), []);
-
+  useEffect(() => {
+    setFormattedDate(new Date().toISOString());
+  }, []);
   return formattedDate;
 };
 
-export const useFormatLocaleDate = (date: string | number) => {
-  const [formattedDate, setFormattedDate] = useState<string>(null);
+export const useFormatLocaleDate = (date: string) => {
+  const [formattedDate, setFormattedDate] = useState<string>(date);
+  useEffect(() => {
+    if (date) {
+      setFormattedDate(new Date(date).toLocaleString());
+    }
+  }, [date]);
 
-  useEffect(() => setFormattedDate(new Date(date).toLocaleString()), []);
   return formattedDate;
 };
