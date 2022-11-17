@@ -57,13 +57,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
         }
       }),
     ]);
-  } else {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
   }
 
   return { props: { dehydratedState: dehydrate(queryClient) } };

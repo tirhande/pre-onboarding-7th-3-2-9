@@ -30,13 +30,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
       const mergeData = { ...data, user_name: userData.name };
       return mergeData;
     });
-  } else {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
   }
 
   return { props: { dehydratedState: dehydrate(queryClient) } };
