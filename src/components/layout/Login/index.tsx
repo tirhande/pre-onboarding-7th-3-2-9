@@ -11,19 +11,17 @@ const LoginIndex = () => {
   const router = useRouter();
 
   const onSubmit = async (values: { email: string; password: string }) => {
+    const toastId = toast.loading('로그인중...');
     const response = await signIn('user-credential', {
       ...values,
       redirect: false,
       callbackUrl: `${window.location.origin}/admin/accounts`,
     });
-
     if (response.ok) {
-      const myPromise = router.push(response.url);
-      toast.promise(myPromise, {
-        loading: '로그인중...',
-        success: '로그인 성공!',
-        error: '로그인 실패',
+      toast.success('로그인 성공!', {
+        id: toastId,
       });
+      await router.push(response.url);
     } else {
       toast.error('이메일 또는 비밀번호가 틀렸습니다.');
     }
