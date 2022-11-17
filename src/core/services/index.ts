@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.NEXT_PUBLIC_URL;
+const BASE_URL = 'https://wanted-3-2-9-json-server.herokuapp.com';
 
 const AxiosRequest = axios.create({
   baseURL: BASE_URL,
