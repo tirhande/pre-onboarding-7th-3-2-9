@@ -43,11 +43,12 @@ const AccountFooter = ({ totalCount }) => {
           variant="outlined"
           color="primary"
           className="pagination"
+          sx={{ ul: { flexWrap: 'nowrap' } }}
         />
       </div>
       <div>
-        <InputLabel>페이지당 개수 :</InputLabel>
         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <InputLabel>페이지당 개수</InputLabel>
           <Select
             size="small"
             value={queries.limit.toString()}
@@ -67,8 +68,11 @@ const AccountFooter = ({ totalCount }) => {
 
 const StyledFooterDiv = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
+  overflow-x: auto;
   margin: 1em 0;
+
   > div {
     display: flex;
     align-items: center;
@@ -76,6 +80,9 @@ const StyledFooterDiv = styled.div`
     width: 33%;
   }
   > div:last-child {
+    @media screen and (max-width: 800px) {
+      display: none;
+    }
     justify-content: flex-start;
   }
 `;

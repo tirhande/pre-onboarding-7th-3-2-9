@@ -32,8 +32,6 @@ const Accounts = ({ data, isLoading }) => {
 
   const onNameClick = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
-    // console.log(e.target.getAttribute('data-user-id'));
-    // toast.success('name Click!');
   };
 
   return (
@@ -43,10 +41,9 @@ const Accounts = ({ data, isLoading }) => {
       ) : (
         <>
           <AccountFilterBar />
-          {/* <AccountTable /> */}
           <div style={{ margin: '10px 0' }}>
-            <TableContainer component={Paper} sx={{ minHeight: 600, maxHeight: 600 }}>
-              <Table stickyHeader aria-label="sticky table">
+            <TableContainer component={Paper} sx={{ minHeight: '50%', maxHeight: '70vh' }}>
+              <Table stickyHeader aria-label="sticky table" sx={{ maxHeight: '10px' }}>
                 <TableHead>
                   <TableRow>
                     {ACCOUNT_COLUMN.map((val, index) => (

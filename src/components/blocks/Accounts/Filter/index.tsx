@@ -50,7 +50,7 @@ const AccountFilterBar = () => {
           }}
         >
           {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-            <form onSubmit={handleSubmit}>
+            <StyledFilterForm onSubmit={handleSubmit}>
               <FormControl sx={{ m: 1, minWidth: 170 }} size="small">
                 <InputLabel>증권사명</InputLabel>
                 <Select
@@ -110,7 +110,7 @@ const AccountFilterBar = () => {
               <Button variant="contained" type="submit" color="info" disabled={isSubmitting}>
                 검색
               </Button>
-            </form>
+            </StyledFilterForm>
           )}
         </Formik>
         <Button variant="contained" onClick={() => setCreateOpen(true)}>
@@ -130,11 +130,16 @@ const AccountFilterBar = () => {
 
 const StyledFilterDiv = styled.div`
   display: flex;
-  float: right;
+  justify-content: flex-end;
 
   button {
     height: 36px;
     margin: 10px;
   }
 `;
+const StyledFilterForm = styled.form`
+  display: flex;
+  overflow-x: auto;
+`;
+
 export default AccountFilterBar;
