@@ -22,7 +22,7 @@
 
 ### 로그인 ID / PASSWORD
 
-### `newface@dco.com` // `newface123!`
+### `1234@1234.com` // `1234`
 
 #
 
