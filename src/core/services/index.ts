@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://wanted-3-2-9-json-server.herokuapp.com';
+const BASE_URL = 'https://pre-onboarding-7th-3-2-9-api.vercel.app/';
 
 const AxiosRequest = axios.create({
   baseURL: BASE_URL,
